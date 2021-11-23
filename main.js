@@ -20,13 +20,13 @@ const port = process.env.PORT || 8080;
 var images_array = fs.readdirSync('public/meme_templates/');
 
 // only for dev also remova <meta http-equiv="Content-Security-Policy" from index
-const livereload = require("livereload");
-const liveReloadServer = livereload.createServer({
-  exts: ['js', 'ejs', 'md', 'json', 'css', 'less', 'sass', 'scss', 'styl', 'svg', 'png', 'jpg', 'gif']
-});
-liveReloadServer.watch([__dirname+'/views',__dirname+'/public']);
-const connectLivereload = require("connect-livereload");
-app.use(connectLivereload());
+// const livereload = require("livereload");
+// const liveReloadServer = livereload.createServer({
+//   exts: ['js', 'ejs', 'md', 'json', 'css', 'less', 'sass', 'scss', 'styl', 'svg', 'png', 'jpg', 'gif']
+// });
+// liveReloadServer.watch([__dirname+'/views',__dirname+'/public']);
+// const connectLivereload = require("connect-livereload");
+// app.use(connectLivereload());
 // only for dev end    
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
