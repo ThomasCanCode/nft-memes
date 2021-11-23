@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>NFT Memes</title>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+	<div id="img_container">
+		<% images_array.forEach(function(name) { %>
+			<div><img src="./meme_templates/<%=name%>"></div>
+		<% })%>
+	</div>
+	<br/><br/><br/><br/><br/><br/>
+	<button id="nodeCall">node save</button>
+	<div>
+		<button id="addText">Add new text</button>
+	</div>	
+	<canvas id="canvas" width="500" height="600"></canvas>
+	
+<script src="./js/jquery.js"></script>
+<script src="./js/fabric.js"></script>
+<script src="./js/client_main.js"></script>
+</body>
+</html>
