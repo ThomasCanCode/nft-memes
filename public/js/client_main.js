@@ -1,4 +1,29 @@
 $(function() {
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+        } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+    });
+    }
+
+    var scrollToTopBtn = document.getElementById("up_to_top");
+    scrollToTopBtn.addEventListener("click", scrollToTop)
+    var rootElement = document.documentElement;
+    function scrollToTop() {
+    rootElement.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+    }
+
     // create a wrapper around native canvas element (with id="c")
     let imageBackground = '';
     let cursorMode = false;
@@ -92,18 +117,6 @@ $(function() {
               console.log(xhr.responseText);
             }
         });
-    //     const dataURL = canvas.toDataURL({
-    //         width: canvas.width,
-    //         height: canvas.height,
-    //         left: 0,
-    //         top: 0,
-    //         format: 'png',
-    //    });
-    //    const link = document.createElement('a');
-    //    link.download = 'image.png';
-    //    link.href = dataURL;
-    //    document.body.appendChild(link);
-    //    link.click();
-    //    document.body.removeChild(link);
+
     }
 });

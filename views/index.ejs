@@ -1,26 +1,213 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>NFT Memes</title>
-	<link rel="stylesheet" href="./css/style.css">
+  <title>NFT Memes</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="NFT Memes is the first platform to bring memes to the people of crypto!">
+  <meta name="author" content="Thomas">
+
+<!--   <meta property="og:title" content="Ricci Rich Rich Club">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://riccirichclub.io/">
+  <meta property="og:description" content="Ricci Rich Rich Club is a collection of randomly generated NFTs hosted on the Ethereum blockchain.">
+  <meta property="og:image" content="image.png">
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@RicciRichClub" />
+  <meta name="twitter:title" content="RRRC -  Ricci Rich Rich Club" />
+  <meta name="twitter:description" content="Ricci Rich Rich Club is a collection of randomly generated NFTs hosted on the Ethereum blockchain." />
+  <meta name="twitter:image" content="https://riccirichclub.io/images/twitter.webp" /> -->
+
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+  <link rel="manifest" href="./images/site.webmanifest">
+  <link rel="mask-icon" href="./images/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" type="image/icon" href="./images/favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="./images/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff"> -->
+
+  <link rel="stylesheet" href="./flickity/flickity.min.css">
+  <link rel="stylesheet" href="./style.css?v=1.00">
+
+<!--   <link rel="preload" as="image" href="./images/EARLY.webp">
+  <link rel="prefetch" as="image" href="./images/mobile_thumbnail.webp"  media="(max-width: 768px)"> -->
+
+<!--   <link rel="preload" as="font" crossOrigin="anonymous" href="./fonts/Roboto-Thin.ttf">
+  <link rel="preload" as="font" crossOrigin="anonymous" href="./fonts/Roboto-Medium.ttf">
+  <link rel="preload" as="font" crossOrigin="anonymous" href="./fonts/Nunito-Regular.ttf">
+  <link rel="preload" as="font" crossOrigin="anonymous" href="./fonts/Nunito-Bold.ttf">
+  <link rel="preload" as="font" crossOrigin="anonymous" href="./fonts/Nunito-ExtraBold.ttf">
+  <link rel="preload" as="font" crossOrigin="anonymous" href="./fonts/Nunito-Light.ttf"> -->
+
 </head>
+
 <body>
-	<div id="img_container">
-		<% images_array.forEach(function(name) { %>
-			<div><img src="./meme_templates/<%=name%>"></div>
-		<% })%>
-	</div>
-	<br/><br/><br/><br/><br/><br/>
-	<button id="nodeCall">node save</button>
-	<div>
-		<button id="addText">Add new text</button>
-	</div>	
-	<canvas id="canvas" width="500" height="600"></canvas>
-	
-<script src="./js/jquery.js"></script>
-<script src="./js/fabric.js"></script>
-<script src="./js/client_main.js"></script>
+  <header>
+    <div>
+      <a href="#"><img src="./images/logo.png" alt="Logo"></a>
+    </div>
+    <div>
+      <a href="#">Generator</a>
+      <a href="#">Popular memes</a>
+      <a href="#">FAQ</a>
+      <a href="#">About us</a>
+      <a href="#">Vote</a>
+    </div>
+    <div>
+      <button id="connect_wallet">Connect Wallet</button>
+    </div>
+  </header>
+
+  <section class="generator_section">
+
+   <div class="generator_container">
+     <span>
+       <canvas id="canvas" width="500" height="500"></canvas>
+       <div class="generator_buttons">
+         <button><img src="./images/rotate.svg"> ROTATE</button>
+         <button><img src="./images/add_image.svg"> ADD IMAGE</button>
+         <button><img src="./images/draw.svg"> DRAW</button>
+       </div>
+     </span>
+   </div>
+
+   <div class="generator_side">
+    <button id="search_button"><img src="./images/search.png" alt="Search"> Search memes!</button>
+    <h4>Recently created NFT Memes!</h4>
+    <img src="./images/temp.png" style="width:100%;margin:20px 0 50px;">
+    <div class="text_center">
+      <button id="mint_button" class="black_button">MINT</button>
+    </div>
+   </div> 
+
+  </section>
+
+  <section class="popular_section">
+    <img src="./images/temp2.png" style="width:100%;margin-bottom: -5px;">
+  </section>
+
+  <section class="faq_section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq_container">
+      <div>
+        <h3>What if ?</h3>
+
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+
+      </div>
+      <div>
+        <h3>What if ?</h3>
+
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+
+      </div>
+      <div>
+        <h3>What if ?</h3>
+
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+        <div class="question">
+          <button class="accordion">What if I drink too much coffee?</button>
+          <div class="panel">
+            <p>You wont sleep, Diana te iubesc!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="about_section">
+    <div>
+      <h1>GET TO KNOW US</h1>
+      <p>Hey! My name is Thomas and I’ve created this platform to help bring memes to the NFT world!<br>This is the main goal, however I have bigger plans for NFT Memes, my personal goal is to create a community of fun, inventive people to generate NFT Memes and help them earn royalties from the resale of their creation!</p>
+
+      <p>I wish for this community to be actively involved in deciding the direction of this platform, from the smallest things such as default font-family or adding new meme templates to big, important decisions such as implementing support for a new blockchain, design & functionality changes, maybe even going full DAO in the future!</p>
+      <p>Because of many projects lacking a link between the community & creators, I have decided to create a ‘vote’ system, where I or any author of NFT Memes, can raise an issue and ask the community to voice their opinion. From here on, I will refer to myself and the community as ‘we’.</p>
+
+      <p>We need to....</p>
+    </div>
+    <div>
+      <h1>OUR GOALS</h1>
+      <p>Hey! My name is Thomas and I’ve created this platform to help bring memes to the NFT world!<br>This is the main goal, however I have bigger plans for NFT Memes, my personal goal is to create a community of fun, inventive people to generate NFT Memes and help them earn royalties from the resale of their creation!</p>
+
+      <p>I wish for this community to be actively involved in deciding the direction of this platform, from the smallest things such as default font-family or adding new meme templates to big, important decisions such as implementing support for a new blockchain, design & functionality changes, maybe even going full DAO in the future!</p>
+      <p>Because of many projects lacking a link between the community & creators, I have decided to create a ‘vote’ system, where I or any author of NFT Memes, can raise an issue and ask the community to voice their opinion. From here on, I will refer to myself and the community as ‘we’.</p>
+
+      <p>We need to....</p>
+    </div>
+  </section>
+  
+  <footer>All rights reserved. NFT-Memes</footer>
+
+  <button id="up_to_top" style="display: none;"><img src="./images/top.webp" alt="Go To Top!"></button>
+
+  
+	<script src="./js/jquery.js"></script>
+	<script src="./js/fabric.js"></script>
+	<script src="./js/client_main.js"></script>
+  <!-- <script async src="detect-provider.min.js"></script> 
+  <script defer src='web3.min.js'></script>
+  <script defer src="dapp.js?v=3.21"></script> -->
 </body>
 </html>
+
+<!-- <% images_array.forEach(function(name) { %>
+	<div><img src="./meme_templates/<%=name%>"></div>
+<% })%> -->

@@ -1,0 +1,19 @@
+{
+    "name":"THE BILLIONAIRE DOGE CLUB #5633",
+    "description":"THE BILLIOate our community known as: The Billionaire Doge Club. Our dogs are pudgy, cute, fun, and a little goofy. The Billionaire Doge are known for eating too many bones and earning money. Money Doesn't Matter When You are a Member of The Billionaire Doge Club!",
+    "image":"https://cloudflare-ipfs.com/ipfs/QmejGGZGCcvwrp9ovseAZtf1BFUUp2p6MkKJGXJsVLLDi1",
+    "external_link":"https://thebillionairedogeclub.com/",
+    "seller_fee_basis_points":1000,# Indicates a 10% seller fee
+    "fee_recipient":"0xf15eEb4704D710264ce8C1373c09Ed30C79Af355",
+    "attributes":[
+        {
+           "trait_type":"Meme template",
+           "value":"Meme name"
+        },
+        {
+            "display_type": "date", 
+            "trait_type": "birthday", 
+            "value": 1546360800
+        }
+     ]
+ }
