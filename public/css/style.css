@@ -1,5 +1,5 @@
 @font-face {
-	font-family: Roboto;
+	font-family: Roboto Mono;
 	font-style: normal;
 	font-weight: 300;
 	src: url("fonts/Roboto-Thin.ttf") format("truetype");
@@ -7,7 +7,7 @@
 }
 
 @font-face {
-	font-family: Roboto;
+	font-family: Roboto Mono;
 	font-style: normal;
 	font-weight: bold;
 	src: url("fonts/Roboto-Medium.ttf") format("truetype");
