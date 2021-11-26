@@ -203,8 +203,7 @@ function add_more_images_on_scroll(){
     var all_items_length = all_items.length;
 
     if(all_items_length <= 1){
-        ajax_search_call('*');
-        console.log('da')
+        ajax_search_call('*'); //scroll without typing anything in first
     }else{
         var small_all_items = all_items.slice(grid_length,total_items_to_be)
         for(let i =0; i<50;i++){ 
@@ -213,8 +212,9 @@ function add_more_images_on_scroll(){
             }
             let image = small_all_items[i];
             let image_name = image.replace('.jpg','');
-            let to_append = '<div class="item not_loaded_yt"><div class="content"><h4>'+image_name+'</h4><img class="nft_template" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
+            let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template hidden" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
             $('.grid').append(to_append);
+            setImages();
             //imagesLoaded( image, console.log('loaded') )
         }
     }
@@ -230,6 +230,10 @@ function ajax_search_call(search_term){
         data: "search=" + search_term,  // <-- what you're sending
         dataType: "json",              // <-- what you're expecting back
         success: function(json){       // <-- do something with the JSON you get
+            
+            $('img:not(.loaded)').addClass('.loaded').bind('load',function(){
+                //Your code here
+            });
           // 3. parse the JSON and display the results
           var res = JSON.parse(JSON.stringify(json));
           if(search_term != "*"){
@@ -240,10 +244,12 @@ function ajax_search_call(search_term){
               all_items = res;
               add_more_images_on_scroll();
           }else{
+            console.log('aici')
               for(image of res){
                   let image_name = image.replace('.jpg','');
-                  let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
+                  let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template hidden" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
                   $('.grid').append(to_append);
+                  //setImages();
               }
           }
           resizeAllGridItems();
@@ -252,4 +258,13 @@ function ajax_search_call(search_term){
           console.log('Error', data);
         }
       });
+}
+
+function setImages() {
+    $(".item img").each(function() {
+        $(this).on('load', function(){
+            $(this).removeClass('hidden');
+            resizeAllGridItems();
+        });
+    });
 }

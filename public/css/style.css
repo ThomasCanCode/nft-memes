@@ -372,6 +372,6 @@ footer{
 	  display: block;
   }
 
-  .not_loaded_yet{
+  .hidden{
 	  visibility: hidden;
   }

@@ -35,6 +35,11 @@ app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb',extended: true}));
 
 
+app.listen(port, () => {
+    console.log(`  \\,,/(^_^)\,,/ Started listening at http://127.0.0.1:${port}`)
+})
+
+
 app.post(`/generate_meme`, function(req, res) {
     generate_meme(req);
     res.sendStatus(200);
@@ -44,7 +49,7 @@ app.get("/", (req, res) => {
     small_similar_image = images_array.slice(end_of_arrayslice-40,end_of_arrayslice);
     res.render("index", ({
         small_similar_image
-})); // index refers to index.ejs
+    })); // index refers to index.ejs
 });
 
 app.post(`/api/search`, function(req, res) {
@@ -59,10 +64,6 @@ app.post(`/api/search`, function(req, res) {
     }   
 });
 
-
-app.listen(port, () => {
-  console.log(`  \\,,/(^_^)\,,/ Started listening at http://127.0.0.1:${port}`)
-})
 
 
 function generate_meme(req){
