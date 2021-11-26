@@ -249,7 +249,7 @@ function ajax_search_call(search_term){
                   let image_name = image.replace('.jpg','');
                   let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template hidden" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
                   $('.grid').append(to_append);
-                  //setImages();
+                  setImages();
               }
           }
           resizeAllGridItems();
