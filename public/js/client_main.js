@@ -32,7 +32,18 @@ $(function() {
         selectionColor: 'blue',
         selectionLineWidth: 2,
         //isDrawingMode : true
-      });
+    });
+
+    ///default image
+    
+    defaultimage = './images/canvas_default.webp';
+    fabric.Image.fromURL(defaultimage, function(defaultimage) {
+        defaultimage.scaleX = canvas.width / defaultimage.width;
+        defaultimage.scaleY = canvas.height / defaultimage.height;
+        canvas.setBackgroundImage(defaultimage);
+        canvas.requestRenderAll();
+     });
+      
     
     canvas.on('mouse:up', function(obj) {
         if(obj.target==null && cursorMode == true){
@@ -60,7 +71,6 @@ $(function() {
             canvas.requestRenderAll();
          });
          toggleSearchModal();
-         //getAllObjects(); idk if needed?
     });
 
     function addTextMode(mode){
@@ -86,12 +96,6 @@ $(function() {
         });
         canvas.add(name);
         canvas.renderAll();
-    }
-
-    function getAllObjects(){
-        var objs = canvas.getObjects().map(function(o) {
-            console.log(o.set('active', true));
-        });
     }
 
     function saveCanvas(){
@@ -213,15 +217,13 @@ function ajax_search_call(search_term){
               all_items = res;
               add_more_images_on_scroll();
           }else{
-            console.log('aici')
               for(image of res){
                   let image_name = image.replace('.jpg','');
                   let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template hidden" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
                   $('.grid_hidden').append(to_append);
-                  setImages();
               }
           }
-          resizeAllGridItems();
+          setImages();
         },
         error: function(data){
           console.log('Error', data);
@@ -254,7 +256,6 @@ function add_more_images_on_scroll(){
 function setImages() {    
     $('.grid_hidden').imagesLoaded( function() {
         $('.grid_hidden').children().appendTo(".grid");
-        //$('.grid_hidden').removeClass('grid_hidden');
         resizeAllGridItems();
     });
 }
