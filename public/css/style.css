@@ -371,3 +371,7 @@ footer{
 	  max-width: 110px;
 	  display: block;
   }
+
+  .not_loaded_yet{
+	  visibility: hidden;
+  }

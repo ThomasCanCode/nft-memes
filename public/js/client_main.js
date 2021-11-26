@@ -138,6 +138,12 @@ $(function() {
     }
 
 
+    $('#search_modal').on('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+            add_more_images_on_scroll();
+        }
+    })
+
 
 
 });
@@ -180,31 +186,70 @@ function resizeGridItem(item){
       }, ms || 0);
     };
   }
+
   
+  var all_items = Array;
+
   $('#search').keyup(delay(function (e) {
     // 1. grab the search term from the input field
     var search_term = $(this).val();
-  
-    // 2. send it to your back-end via ajax in the body 
-    $.ajax({
-      method: "POST",
-      url: "/api/search",            // <-- your back-end endpoint
-      data: "search=" + search_term,  // <-- what you're sending
-      dataType: "json",              // <-- what you're expecting back
-      success: function(json){       // <-- do something with the JSON you get
-        // 3. parse the JSON and display the results
-        var res = JSON.parse(JSON.stringify(json));
-        $('.grid').find('*').not('.close').remove();
-        for(image of res){
-            let image_name = image.replace('.jpg','');
-            let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
-            $('.grid').append(to_append);
-        }
-        resizeAllGridItems();
-      },
-      error: function(data){
-        console.log('Error', data);
-      }
-    });
+    ajax_search_call(search_term);
   }, 500));
 
+function add_more_images_on_scroll(){
+
+    var grid_length = $('.grid .item').length;
+    var total_items_to_be = grid_length + 50;
+    var all_items_length = all_items.length;
+
+    if(all_items_length <= 1){
+        ajax_search_call('*');
+        console.log('da')
+    }else{
+        var small_all_items = all_items.slice(grid_length,total_items_to_be)
+        for(let i =0; i<50;i++){ 
+            if(grid_length+i == all_items_length){
+                return;
+            }
+            let image = small_all_items[i];
+            let image_name = image.replace('.jpg','');
+            let to_append = '<div class="item not_loaded_yt"><div class="content"><h4>'+image_name+'</h4><img class="nft_template" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
+            $('.grid').append(to_append);
+            //imagesLoaded( image, console.log('loaded') )
+        }
+    }
+    resizeAllGridItems();
+}
+
+
+function ajax_search_call(search_term){
+    // 2. send it to your back-end via ajax in the body 
+    $.ajax({
+        method: "POST",
+        url: "/api/search",            // <-- your back-end endpoint
+        data: "search=" + search_term,  // <-- what you're sending
+        dataType: "json",              // <-- what you're expecting back
+        success: function(json){       // <-- do something with the JSON you get
+          // 3. parse the JSON and display the results
+          var res = JSON.parse(JSON.stringify(json));
+          if(search_term != "*"){
+            $('.grid').find('*').not('.close').remove();
+          }
+          if(res.length > 60){
+              console.log('large array! > 50 items')
+              all_items = res;
+              add_more_images_on_scroll();
+          }else{
+              for(image of res){
+                  let image_name = image.replace('.jpg','');
+                  let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
+                  $('.grid').append(to_append);
+              }
+          }
+          resizeAllGridItems();
+        },
+        error: function(data){
+          console.log('Error', data);
+        }
+      });
+}

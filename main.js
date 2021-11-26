@@ -18,6 +18,7 @@ app.use(session({
 
 const port = process.env.PORT || 8080;
 var images_array = fs.readdirSync('public/meme_templates/');
+var small_similar_image;
 
 // only for dev also remova <meta http-equiv="Content-Security-Policy" from index
 // const livereload = require("livereload");
@@ -38,32 +39,23 @@ app.post(`/generate_meme`, function(req, res) {
     generate_meme(req);
     res.sendStatus(200);
 });
-
 app.get("/", (req, res) => {
+    end_of_arrayslice = getRandomInt(40,images_array.length);
+    small_similar_image = images_array.slice(end_of_arrayslice-40,end_of_arrayslice);
     res.render("index", ({
-        images_array
+        small_similar_image
 })); // index refers to index.ejs
 });
 
 app.post(`/api/search`, function(req, res) {
-    //images_array
-    // const parseJsonAsync = (jsonString) => {
-    //     return new Promise(resolve => {
-    //         setTimeout(() => {
-    //         resolve(JSON.parse(jsonString))
-    //         })
-    //     })
-    // }
-    const data = '{ "name": "Flavio", "age": 35 }';
-    // parseJsonAsync(data).then(jsonData => {
-    // })
-    const similar_images = images_array.filter(s => s.includes(req.body.search));
+    const similar_images = images_array.filter(s => s.toLowerCase().includes(req.body.search.toLowerCase()));
+
     if(req.body.search.length === 0){
-        const end_of_arrayslice = getRandomInt(40,images_array.length);
-        const small_similar_image = images_array.slice(end_of_arrayslice-39,end_of_arrayslice);
-        res.json(small_similar_image);
+        res.json(small_similar_image); //empty search, removed all characters
+    }else if(req.body.search === "*"){
+        res.json(images_array); //down scroll
     }else{
-        res.json(similar_images);
+        res.json(similar_images); //none of the above
     }   
 });
 

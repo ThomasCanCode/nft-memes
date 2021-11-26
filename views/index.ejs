@@ -216,9 +216,8 @@
       <div class="grid">
         <span class="close">&times;</span>
         <% 
-        //images_array.forEach(function(name) { 
-            for (let i = 0; i < 60; i++) {
-              name = images_array[i]
+            for (let i = 0; i < small_similar_image.length; i++) {
+              name = small_similar_image[i]
               let friendly_name = name.replace('.jpg','');%>
 	        <div class="item"><div class="content"><h4><%=friendly_name%></h4><img class="nft_template" src="./meme_templates/<%=name%>" alt="<%=friendly_name%>"></div></div>
         <% }%>
