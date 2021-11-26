@@ -45,6 +45,29 @@ app.get("/", (req, res) => {
 })); // index refers to index.ejs
 });
 
+app.post(`/api/search`, function(req, res) {
+    //images_array
+    // const parseJsonAsync = (jsonString) => {
+    //     return new Promise(resolve => {
+    //         setTimeout(() => {
+    //         resolve(JSON.parse(jsonString))
+    //         })
+    //     })
+    // }
+    const data = '{ "name": "Flavio", "age": 35 }';
+    // parseJsonAsync(data).then(jsonData => {
+    // })
+    const similar_images = images_array.filter(s => s.includes(req.body.search));
+    if(req.body.search.length === 0){
+        const end_of_arrayslice = getRandomInt(40,images_array.length);
+        const small_similar_image = images_array.slice(end_of_arrayslice-39,end_of_arrayslice);
+        res.json(small_similar_image);
+    }else{
+        res.json(similar_images);
+    }   
+});
+
+
 app.listen(port, () => {
   console.log(`  \\,,/(^_^)\,,/ Started listening at http://127.0.0.1:${port}`)
 })
@@ -71,3 +94,9 @@ function generate_meme(req){
       }
 }
 
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  }

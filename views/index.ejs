@@ -32,7 +32,7 @@
   <meta name="msapplication-config" content="./images/browserconfig.xml">
   <meta name="theme-color" content="#ffffff"> -->
 
-  <link rel="stylesheet" href="./css/flickity/flickity.min.css">
+  <!-- <link rel="stylesheet" href="./css/flickity/flickity.min.css"> -->
   <link rel="stylesheet" href="./css/style.css?v=1.00">
 
 <!--   <link rel="preload" as="image" href="./images/EARLY.webp">
@@ -50,7 +50,7 @@
 <body>
   <header>
     <div>
-      <a href="#"><img src="./images/logo.png" alt="Logo"></a>
+      <a href="#" class="logo"><img src="./images/logo.webp" alt="Logo"></a>
     </div>
     <div>
       <a href="#">Generator</a>
@@ -58,6 +58,7 @@
       <a href="#">FAQ</a>
       <a href="#">About us</a>
       <a href="#">Vote</a>
+      <a href="#">Contact</a>
     </div>
     <div>
       <button id="connect_wallet">Connect Wallet</button>
@@ -71,7 +72,7 @@
        <canvas id="canvas" width="500" height="500"></canvas>
        <div class="generator_buttons">
          <button><img src="./images/rotate.svg"> ROTATE</button>
-         <button><img src="./images/add_image.svg"> ADD IMAGE</button>
+         <button id="addText"><img src="./images/add_image.svg"> ADD IMAGE</button>
          <button><img src="./images/draw.svg"> DRAW</button>
        </div>
      </span>
@@ -80,7 +81,16 @@
    <div class="generator_side">
     <button id="search_button"><img src="./images/search.png" alt="Search"> Search memes!</button>
     <h4>Recently created NFT Memes!</h4>
-    <img src="./images/temp.png" style="width:100%;margin:20px 0 50px;">
+      <div class="recent_nfts_container">
+        <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">
+        <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">
+        <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">
+        <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">
+        <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">
+        <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">
+        <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">
+        <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">        
+      </div>
     <div class="text_center">
       <button id="mint_button" class="black_button">MINT</button>
     </div>
@@ -199,15 +209,30 @@
   <button id="up_to_top" style="display: none;"><img src="./images/top.webp" alt="Go To Top!"></button>
 
   
+  <div id="search_modal" class="modal">
+    <div class="modal-content">
+      <input type="search" placeholder="meme" id="search">
+      <div id="search_results"></div>
+      <div class="grid">
+        <span class="close">&times;</span>
+        <% 
+        //images_array.forEach(function(name) { 
+            for (let i = 0; i < 60; i++) {
+              name = images_array[i]
+              let friendly_name = name.replace('.jpg','');%>
+	        <div class="item"><div class="content"><h4><%=friendly_name%></h4><img class="nft_template" src="./meme_templates/<%=name%>" alt="<%=friendly_name%>"></div></div>
+        <% }%>
+      </div>
+    </div>
+  </div>
+
+
 	<script src="./js/jquery.js"></script>
 	<script src="./js/fabric.js"></script>
-	<script src="./js/client_main.js"></script>
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+	<script src="./js/client_main.js?v=1.01"></script>
   <!-- <script async src="detect-provider.min.js"></script> 
   <script defer src='web3.min.js'></script>
   <script defer src="dapp.js?v=3.21"></script> -->
 </body>
 </html>
-
-<!-- <% images_array.forEach(function(name) { %>
-	<div><img src="./meme_templates/<%=name%>"></div>
-<% })%> -->

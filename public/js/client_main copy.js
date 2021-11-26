@@ -7,9 +7,9 @@ $(function() {
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
+        panel.style.maxHeight = null;
         } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.style.maxHeight = panel.scrollHeight + "px";
         }
     });
     }
@@ -18,10 +18,10 @@ $(function() {
     scrollToTopBtn.addEventListener("click", scrollToTop)
     var rootElement = document.documentElement;
     function scrollToTop() {
-        rootElement.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    rootElement.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
     }
 
     // create a wrapper around native canvas element (with id="c")
@@ -33,6 +33,13 @@ $(function() {
         selectionLineWidth: 2,
         //isDrawingMode : true
       });
+
+    // var text = new fabric.IText('hello world', { 
+    //     left: 0, 
+    //     top: 0,
+    //     cornerColor: 'rgb(255,0,0)'
+    // });
+    // canvas.add(text);
     
     canvas.on('mouse:up', function(obj) {
         if(obj.target==null && cursorMode == true){
@@ -50,8 +57,8 @@ $(function() {
     $('#nodeCall').on('click', function(e){
         saveCanvas();
     });
-    
-    $('body').on('click', 'img.nft_template', function(e) {
+
+    $('.nft_template').on('click', function(e){
         imageBackground = this.src;
         fabric.Image.fromURL(imageBackground, function(image) {
             image.scaleX = canvas.width / image.width;
@@ -81,8 +88,8 @@ $(function() {
         });
         name.set({ 
             name: 'text_'+textCount,
-            left: obj.e.offsetX - (name.width/2),
-            top: obj.e.offsetY-name.height,
+            left: obj.e.x - (name.width/2),
+            top: obj.e.y-name.height,
         });
         canvas.add(name);
         canvas.renderAll();
@@ -126,7 +133,7 @@ $(function() {
     function toggleSearchModal(){
         searchModal.toggle(50);
         resizeAllGridItems();
-        $('body').toggleClass('overflow_hidden');
+        $('body').css('overflow','hidden');
     }
 //////////////////////////////////////////
     var recentNFT = $('.recent_nft');
@@ -147,7 +154,7 @@ function resizeGridItem(item){
     rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
     rowSpan = Math.ceil((item.querySelector('.content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
-    item.style.gridRowEnd = "span "+rowSpan;
+      item.style.gridRowEnd = "span "+rowSpan;
   }
   
   function resizeAllGridItems(){
@@ -169,42 +176,3 @@ function resizeGridItem(item){
   for(x=0;x<allItems.length;x++){
     imagesLoaded( allItems[x], resizeInstance);
   }
-
-  function delay(callback, ms) {
-    var timer = 0;
-    return function() {
-      var context = this, args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        callback.apply(context, args);
-      }, ms || 0);
-    };
-  }
-  
-  $('#search').keyup(delay(function (e) {
-    // 1. grab the search term from the input field
-    var search_term = $(this).val();
-  
-    // 2. send it to your back-end via ajax in the body 
-    $.ajax({
-      method: "POST",
-      url: "/api/search",            // <-- your back-end endpoint
-      data: "search=" + search_term,  // <-- what you're sending
-      dataType: "json",              // <-- what you're expecting back
-      success: function(json){       // <-- do something with the JSON you get
-        // 3. parse the JSON and display the results
-        var res = JSON.parse(JSON.stringify(json));
-        $('.grid').find('*').not('.close').remove();
-        for(image of res){
-            let image_name = image.replace('.jpg','');
-            let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
-            $('.grid').append(to_append);
-        }
-        resizeAllGridItems();
-      },
-      error: function(data){
-        console.log('Error', data);
-      }
-    });
-  }, 500));
-
