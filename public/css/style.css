@@ -376,4 +376,5 @@ footer{
 	position: absolute;
     opacity: 0;
     visibility: hidden;
+	height: 0;
   }
