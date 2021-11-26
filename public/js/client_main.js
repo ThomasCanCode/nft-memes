@@ -145,7 +145,6 @@ $(function() {
     })
 
 
-
 });
 
 function resizeGridItem(item){
@@ -196,8 +195,41 @@ function resizeGridItem(item){
     ajax_search_call(search_term);
   }, 500));
 
-function add_more_images_on_scroll(){
 
+function ajax_search_call(search_term){
+    // 2. send it to your back-end via ajax in the body 
+    $.ajax({
+        method: "POST",
+        url: "/api/search",            // <-- your back-end endpoint
+        data: "search=" + search_term,  // <-- what you're sending
+        dataType: "json",              // <-- what you're expecting back
+        success: function(json){       // <-- do something with the JSON you get
+          var res = JSON.parse(JSON.stringify(json));
+          if(search_term != "*"){
+            $('.grid').find('*').not('.close').remove();
+          }
+          if(res.length > 60){
+              console.log('large array! > 50 items')
+              all_items = res;
+              add_more_images_on_scroll();
+          }else{
+            console.log('aici')
+              for(image of res){
+                  let image_name = image.replace('.jpg','');
+                  let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template hidden" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
+                  $('.grid_hidden').append(to_append);
+                  setImages();
+              }
+          }
+          resizeAllGridItems();
+        },
+        error: function(data){
+          console.log('Error', data);
+        }
+      });
+}
+
+function add_more_images_on_scroll(){
     var grid_length = $('.grid .item').length;
     var total_items_to_be = grid_length + 20;
     var all_items_length = all_items.length;
@@ -212,59 +244,17 @@ function add_more_images_on_scroll(){
             }
             let image = small_all_items[i];
             let image_name = image.replace('.jpg','');
-            let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template hidden" src="https://riccirichclub.io/meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
-            $('.grid').append(to_append);
-            setImages();
-            //imagesLoaded( image, console.log('loaded') )
+            let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template hidden" src="./meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
+            $('.grid_hidden').append(to_append);
         }
     }
-    resizeAllGridItems();
+    setImages();
 }
 
-
-function ajax_search_call(search_term){
-    // 2. send it to your back-end via ajax in the body 
-    $.ajax({
-        method: "POST",
-        url: "/api/search",            // <-- your back-end endpoint
-        data: "search=" + search_term,  // <-- what you're sending
-        dataType: "json",              // <-- what you're expecting back
-        success: function(json){       // <-- do something with the JSON you get
-            
-            $('img:not(.loaded)').addClass('.loaded').bind('load',function(){
-                //Your code here
-            });
-          // 3. parse the JSON and display the results
-          var res = JSON.parse(JSON.stringify(json));
-          if(search_term != "*"){
-            $('.grid').find('*').not('.close').remove();
-          }
-          if(res.length > 60){
-              console.log('large array! > 50 items')
-              all_items = res;
-              add_more_images_on_scroll();
-          }else{
-            console.log('aici')
-              for(image of res){
-                  let image_name = image.replace('.jpg','');
-                  let to_append = '<div class="item"><div class="content"><h4>'+image_name+'</h4><img class="nft_template hidden" src="https://riccirichclub.io/meme_templates/'+image+'" alt="'+image_name+'"></div></div>';
-                  $('.grid').append(to_append);
-                  setImages();
-              }
-          }
-          resizeAllGridItems();
-        },
-        error: function(data){
-          console.log('Error', data);
-        }
-      });
-}
-
-function setImages() {
-    $(".item img").each(function() {
-        $(this).on('load', function(){
-            $(this).removeClass('hidden');
-            resizeAllGridItems();
-        });
+function setImages() {    
+    $('.grid_hidden').imagesLoaded( function() {
+        $('.grid_hidden').children().appendTo(".grid");
+        //$('.grid_hidden').removeClass('grid_hidden');
+        resizeAllGridItems();
     });
 }

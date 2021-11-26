@@ -219,14 +219,19 @@
             for (let i = 0; i < small_similar_image.length; i++) {
               name = small_similar_image[i]
               let friendly_name = name.replace('.jpg','');%>
-	        <div class="item"><div class="content"><h4><%=friendly_name%></h4><img class="nft_template" src="https://riccirichclub.io/meme_templates/<%=name%>" alt="<%=friendly_name%>"></div></div>
+	        <div class="item"><div class="content"><h4><%=friendly_name%></h4><img class="nft_template" src="./meme_templates/<%=name%>" alt="<%=friendly_name%>"></div></div>
         <% }%>
+      </div>
+      
+      <div class="grid_hidden">
+        <img src="./images/top.webp">
       </div>
     </div>
   </div>
 
 
 	<script src="./js/jquery.js"></script>
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 	<script src="./js/fabric.js"></script>
   <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 	<script src="./js/client_main.js?v=1.01"></script>

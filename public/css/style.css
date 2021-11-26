@@ -372,6 +372,8 @@ footer{
 	  display: block;
   }
 
-  .hidden{
-	  visibility: hidden;
+  .grid_hidden{
+	position: absolute;
+    opacity: 0;
+    visibility: hidden;
   }
