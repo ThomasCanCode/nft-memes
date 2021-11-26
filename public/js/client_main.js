@@ -199,14 +199,14 @@ function resizeGridItem(item){
 function add_more_images_on_scroll(){
 
     var grid_length = $('.grid .item').length;
-    var total_items_to_be = grid_length + 50;
+    var total_items_to_be = grid_length + 20;
     var all_items_length = all_items.length;
 
     if(all_items_length <= 1){
         ajax_search_call('*'); //scroll without typing anything in first
     }else{
         var small_all_items = all_items.slice(grid_length,total_items_to_be)
-        for(let i =0; i<50;i++){ 
+        for(let i =0; i<20;i++){ 
             if(grid_length+i == all_items_length){
                 return;
             }
