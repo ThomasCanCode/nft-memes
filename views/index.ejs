@@ -50,7 +50,7 @@
 <body>
   <header>
     <div>
-      <a href="#" class="logo"><img src="./images/logo.webp" alt="Logo"></a>
+      <a href="#" class="logo"><img src="./images/logo.svg" alt="Logo"></a>
     </div>
     <div>
       <a href="#">Generator</a>
@@ -72,8 +72,10 @@
        <canvas id="canvas" width="500" height="500"></canvas>
        <div class="generator_buttons">
          <button><img src="./images/rotate.svg"> ROTATE</button>
-         <button id="addText"><img src="./images/add_image.svg"> ADD IMAGE</button>
+         <button id="addImage"><img src="./images/add_image.svg"> ADD IMAGE</button>
+         <button id="addText"><img src="./images/add_image.svg"> ADD TEXT</button>
          <button><img src="./images/draw.svg"> DRAW</button>
+         <button><img src="./images/spacing.svg"> SPACING</button>
        </div>
      </span>
    </div>
@@ -99,6 +101,7 @@
   </section>
 
   <section class="popular_section">
+    <h1>POPULAR MEMES</h1>
     <img src="./images/popular.webp" style="width:100%;margin-bottom: -5px;">
   </section>
 
@@ -184,6 +187,7 @@
   </section>
 
   <section class="about_section">
+    <img class="and_sign" src="./images/and.svg">
     <div>
       <h1>GET TO KNOW US</h1>
       <p>Hey! My name is Thomas and I’ve created this platform to help bring memes to the NFT world!<br>This is the main goal, however I have bigger plans for NFT Memes, my personal goal is to create a community of fun, inventive people to generate NFT Memes and help them earn royalties from the resale of their creation!</p>
@@ -206,17 +210,21 @@
   
   <footer>All rights reserved. NFT-Memes</footer>
 
-  <button id="up_to_top" style="display: none;"><img src="./images/top.webp" alt="Go To Top!"></button>
+  <button id="up_to_top" style="display: none;">TOP</button>
 
   
   <div id="search_modal" class="modal">
     <div class="modal-content">
-      <input type="search" placeholder="meme" id="search">
+      <div class="templates_search_container">
+        <span>
+          <img src="./images/large_search.svg" alt="Search">
+          <input type="search" placeholder="Search memes..." id="search">
+        </span>
+      </div>
       <div id="search_results"></div>
       <div class="grid">
         <span class="close">&times;</span>
-        <% 
-            for (let i = 0; i < small_similar_image.length; i++) {
+        <% for (let i = 0; i < small_similar_image.length; i++) {
               name = small_similar_image[i]
               let friendly_name = name.replace('.jpg','');%>
 	        <div class="item"><div class="content"><h4><%=friendly_name%></h4><img class="nft_template" src="./meme_templates/<%=name%>" alt="<%=friendly_name%>"></div></div>
@@ -224,7 +232,7 @@
       </div>
       
       <div class="grid_hidden">
-        <img src="./images/top.webp">
+        <img src="#">
       </div>
     </div>
   </div>

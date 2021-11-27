@@ -1,4 +1,4 @@
-$(function() {
+$(function() { //canvas this the main shit, if anyone ever reads this, lmk in the contact section lol
     var acc = document.getElementsByClassName("accordion");
     var i;
 
@@ -118,7 +118,7 @@ $(function() {
 
     }
 
-    //// site javascript
+    ////modal
 
     var searchModal = $('#search_modal');
     var openBtn = $('#search_button');
@@ -132,7 +132,7 @@ $(function() {
         resizeAllGridItems();
         $('body').toggleClass('overflow_hidden');
     }
-//////////////////////////////////////////
+/////////test on recent nfts
     var recentNFT = $('.recent_nft');
     recentNFT.on('click',openRecentNFT);
 
@@ -151,6 +151,7 @@ $(function() {
 
 });
 
+//meme templates grid
 function resizeGridItem(item){
     grid = document.getElementsByClassName("grid")[0];
     rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
@@ -191,8 +192,9 @@ function resizeGridItem(item){
   }
 
   
-  var all_items = Array;
 
+  ///meme template search functions
+  var all_items = Array;
   $('#search').keyup(delay(function (e) {
     // 1. grab the search term from the input field
     var search_term = $(this).val();
@@ -213,7 +215,7 @@ function ajax_search_call(search_term){
             $('.grid').find('*').not('.close').remove();
           }
           if(res.length > 60){
-              console.log('large array! > 50 items')
+              //console.log('large array! > 50 items')
               all_items = res;
               add_more_images_on_scroll();
           }else{
