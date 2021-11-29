@@ -13,9 +13,10 @@
   "author": "Thomas Toma",
   "license": "ISC",
   "dependencies": {
+    "cookie-session": "^1.4.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "express-session": "^1.17.2",
+    "cookie-session": "^1.17.2",
     "fabric": "^4.6.0",
     "git": "^0.1.5",
     "helmet": "^4.6.0",

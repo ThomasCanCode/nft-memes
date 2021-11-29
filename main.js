@@ -4,12 +4,13 @@ const abi = [{"inputs":[{"internalType":"string","name":"_name","type":"string"}
 const contract_address = '0xc5988d9354e2d392de0b0d3c2de98fe43767b246';
 const rpcURL = 'https://polygon-mainnet.infura.io/v3/d8737054b1a0401282cb8624a060fc7f';
 
+
 var express = require('express');
 const path = require('path');
 const fabric = require("fabric").fabric;
 const helmet = require("helmet");
 const fs = require('fs')
-var session = require('express-session')
+var session = require('cookie-session')
 
 const Web3 = require('web3')
 
@@ -115,7 +116,7 @@ function getRandomInt(min, max) {
 
   function watchTokenTransfers() {
     // Instantiate web3 with WebSocketProvider
-    const web3 = new Web3(new Web3.providers.WebsocketProvider(rpcURL))
+    const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws'))
   
     // Instantiate token contract object with JSON ABI and address
     const tokenContract = new web3.eth.Contract(
