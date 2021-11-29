@@ -64,7 +64,14 @@ app.post(`/generate_meme`, function(req, res) {
     generate_meme(req);
     res.sendStatus(200);
 });
+async function testvalue(){
+    
+    let test_value = await web3.eth.getTransaction( '0x98949ea2c06da9415ad4733ada56efb7064d5f1498a64df54021fd940ad2937e' );
+    console.log(test_value)
+}
 app.get("/", (req, res) => {
+    testvalue();
+    
     let end_of_arrayslice = getRandomInt(40,images_array.length);
     small_similar_image = images_array.slice(end_of_arrayslice-40,end_of_arrayslice);
     res.render("index", ({
