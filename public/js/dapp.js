@@ -109,10 +109,12 @@ async function mint() {
 
       // Post tx data
       
-      $.ajax({
+          var tojson = JSON.stringify(canvas);
+
+          $.ajax({
           type: 'POST',
           url: 'http://127.0.0.1:8080/ethereum/send',
-          data: { params },
+          data: { params, canvas_json: tojson },
           success: function(response) { 
               if(response == 'OK'){
                 console.log(response+' sent successfully to nodejs!')

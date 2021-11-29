@@ -1,9 +1,5 @@
 'use strict';
-
-const abi = [{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_symbol","type":"string"},{"internalType":"string","name":"_initBaseURI","type":"string"},{"internalType":"string","name":"_initNotRevealedUri","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"baseExtension","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"cost","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxMintAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_mintAmount","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"notRevealedUri","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bool","name":"_state","type":"bool"}],"name":"pause","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"reveal","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"revealed","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_newBaseExtension","type":"string"}],"name":"setBaseExtension","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_newBaseURI","type":"string"}],"name":"setBaseURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_newCost","type":"uint256"}],"name":"setCost","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_notRevealedURI","type":"string"}],"name":"setNotRevealedURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_newmaxMintAmount","type":"uint256"}],"name":"setmaxMintAmount","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_owner","type":"address"}],"name":"walletOfOwner","outputs":[{"internalType":"uint256[]","name":"","type":"uint256[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"payable","type":"function"}];
-const contract_address = '0xc5988d9354e2d392de0b0d3c2de98fe43767b246';
 const rpcURL = 'https://polygon-mainnet.infura.io/v3/d8737054b1a0401282cb8624a060fc7f';
-
 
 var express = require('express');
 const path = require('path');
@@ -12,7 +8,8 @@ const helmet = require("helmet");
 const fs = require('fs')
 var session = require('cookie-session')
 
-const Web3 = require('web3')
+const Web3 = require('web3');
+let web3 = new Web3(rpcURL);
 
 var canvas = new fabric.Canvas(null, { width: 500, height: 600 });
 var app = express();
@@ -57,21 +54,45 @@ app.listen(port, () => {
 
 
 app.post(`/ethereum/send`, function(req, res) {
-    console.log(req.body.params);
+    //console.log(req.body.params);
+    console.log('Transaction received! '+req.body.params.txHash);
+    checkTransaction(req.body.params.txHash, req.body.canvas_json)
     res.sendStatus(200);
 });
-app.post(`/generate_meme`, function(req, res) {
-    generate_meme(req);
-    res.sendStatus(200);
-});
-async function testvalue(){
-    
-    let test_value = await web3.eth.getTransaction( '0x98949ea2c06da9415ad4733ada56efb7064d5f1498a64df54021fd940ad2937e' );
-    console.log(test_value)
+
+
+async function checkTransaction(hash, canvas_json){
+    let passes = 0;
+    var check_hash = setInterval( async() => {
+        try{
+            if(passes > 10){
+                console.log('failed 10 passes! '+hash)
+                clearInterval(check_hash);
+            }
+
+            let transaction_response = await web3.eth.getTransaction(hash);
+            if(transaction_response.blockHash == null){
+                passes++;
+            }else{
+                web3.eth.getTransactionReceipt(hash)
+                .then(async function(data){
+                    let logs = data.logs;
+                    let token_id = web3.utils.hexToNumber(logs[1].topics[3]);
+                    let value = transaction_response.value;
+                    let owner = transaction_response.from;
+
+                    create_NFT(token_id,value,owner,canvas_json);
+                });
+                clearInterval(check_hash);
+                console.log()
+            }
+        }catch(e){
+            console.log(e);
+        }
+      }, 30*1000);
 }
+
 app.get("/", (req, res) => {
-    testvalue();
-    
     let end_of_arrayslice = getRandomInt(40,images_array.length);
     small_similar_image = images_array.slice(end_of_arrayslice-40,end_of_arrayslice);
     res.render("index", ({
@@ -93,70 +114,47 @@ app.post(`/api/search`, function(req, res) {
 
 
 
-function generate_meme(req){
-    try {
-        var json = JSON.parse(req.body.canvas_json);
-        canvas.loadFromJSON(req.body.canvas_json, function(o, object) {
-        canvas.renderAll.bind(canvas);
-        const out = fs.createWriteStream(__dirname + '/test.png');
-        const svgoutput = canvas.toSVG();
-            fs.writeFile("output.svg", svgoutput, function(err) {
-                if (err){
-                    throw err
-                }else{
-                    console.log('line 38: JSON received!');
-                }
-            });
-        });
-      } catch (e) {
-        console.log('Invalid json')
-        return false;
-      }
-}
 
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-  }
+}
 
-  function watchTokenTransfers() {
-    // Instantiate web3 with WebSocketProvider
-    const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws'))
-  
-    // Instantiate token contract object with JSON ABI and address
-    const tokenContract = new web3.eth.Contract(
-        abi, contract_address,
-      (error, result) => { if (error) console.log(error) }
-    )
-  
-    // Generate filter options
-    const options = {
-      filter: {
-        _from:  process.env.WALLET_FROM,
-        _to:    process.env.WALLET_TO,
-        _value: process.env.AMOUNT
-      },
-      fromBlock: 'latest'
-    }
-  
-    // Subscribe to Transfer events matching filter criteria
-    tokenContract.events.Transfer(options, async (error, event) => {
-      if (error) {
-        console.log(error)
-        return
+function create_NFT(token_id,value,owner,canvas_json){
+    console.log('Owner of token nr: '+token_id+' with the value of: '+value+' is: '+owner);
+    generate_meme(canvas_json,token_id)//add watermark depending on value, send owner for json too
+}
+
+
+
+
+function generate_meme(canvas_json,token_id){
+    try {
+        var json = JSON.parse(canvas_json);
+        //console.log(json.objects) get texts
+        var full_src = json.backgroundImage.src;
+        var small_src = decodeURIComponent(full_src.split("meme_templates/")[1]);
+        json.backgroundImage.src = path.join(__dirname, 'public', 'meme_templates', small_src);
+        
+
+        canvas.loadFromJSON(json, function(o, object) {
+            canvas.renderAll.bind(canvas);
+            const out = fs.createWriteStream(__dirname + '/public/nfts/'+token_id+'.png');
+            const svgoutput = canvas.toSVG();
+            fs.writeFile(token_id+".svg", svgoutput, function(err) {
+                if (err){
+                    throw err
+                }else{
+                    //console.log(canvas_json)
+                    console.log('line 38: JSON received!');
+                }
+            });
+        });
+      } catch (e) {
+        console.log(canvas_json)
+        console.log('Invalid json' + e)
+        return false;
       }
-  
-      console.log('Found incoming Pluton transaction from ' + process.env.WALLET_FROM + ' to ' + process.env.WALLET_TO + '\n');
-      console.log('Transaction value is: ' + process.env.AMOUNT)
-      console.log('Transaction hash is: ' + txHash + '\n')
-  
-      // Initiate transaction confirmation
-      confirmEtherTransaction(event.transactionHash)
-  
-      return
-    })
-  }
-
-  watchTokenTransfers();
+}
