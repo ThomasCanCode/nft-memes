@@ -95,9 +95,35 @@ async function mint() {
   const txHash = await window.ethereum.request({
       method: 'eth_sendTransaction',
       params: [tx],
-  }).then((result) => {
+  }).then( async (result) => {
     console.log('Minting successful! ' + result);
     //send result to nodejs and track it, upon success upload to final json/img folder
+    const params = {
+      from: account,
+      to: contract_address,
+      txHash: result,
+      chainId: deployed_chain,
+      value: pret_final,
+      status: 'pending'
+    };
+
+      // Post tx data
+      
+      $.ajax({
+          type: 'POST',
+          url: 'http://127.0.0.1:8080/ethereum/send',
+          data: { params },
+          success: function(response) { 
+              if(response == 'OK'){
+                console.log(response+' sent successfully to nodejs!')
+              }else{
+                  console.log('line 88 error: '+response);
+              }
+          },
+          error: function(xhr, status, err) {
+            console.log(xhr.responseText);
+          }
+      });
   })
   .catch((error) => {
     console.log(web3.eth.blockNumber+'   '+web3.eth.getTransaction('0x956b7112f9b7cc27f3bb56a0917f7d5c708ebd6bee9012db3ffa906fcffcfb09').blockNumber);

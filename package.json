@@ -18,7 +18,8 @@
     "express-session": "^1.17.2",
     "fabric": "^4.6.0",
     "git": "^0.1.5",
-    "helmet": "^4.6.0"
+    "helmet": "^4.6.0",
+    "web3": "^1.6.1"
   },
   "devDependencies": {
     "connect-livereload": "^0.6.1",
