@@ -52,21 +52,27 @@
     <div>
       <a href="#" class="logo"><img src="./images/logo.svg" alt="Logo"></a>
     </div>
-    <div>
-      <a href="#">Generator</a>
-      <a href="#">Popular memes</a>
-      <a href="#">FAQ</a>
-      <a href="#">About us</a>
-      <a href="#">Vote</a>
-      <a href="#">Contact</a>
+    <div class="menu">
+      <a href="https://opensea.io/collection/radiateddoge">OpenSea</a>
+      <a href="#generator">Generator</a>
+      <a href="#faq">FAQ</a>
+      <a href="#about">About us</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#contact">Contact</a>
     </div>
     <div>
       <button id="connect_wallet">Connect Wallet</button>
     </div>
   </header>
+  
 
-  <section class="generator_section">
+  <section class="popular_section" id="popular">
+    <h1>CREATE AND SELL MEMES</h1>
+    <img src="./images/popular.webp" style="width:100%;margin-bottom: -5px;">
+  </section>
 
+  <section class="generator_section" id="generator">
+    <button class="hide_on_desktop search_button"><img src="./images/search.png" alt="Search"> Meme templates</button>
    <div class="generator_container">
      <span>
        <canvas id="canvas" width="500" height="500"></canvas>
@@ -81,7 +87,7 @@
    </div>
 
    <div class="generator_side">
-    <button id="search_button"><img src="./images/search.png" alt="Search"> Search memes!</button>
+    <button class="hide_on_mobile search_button"><img src="./images/search.png" alt="Search"> Meme templates</button>
     <h4>Recently created NFT Memes!</h4>
       <div class="recent_nfts_container">
         <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">
@@ -93,19 +99,14 @@
         <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">
         <img class="recent_nft" alt="Most recent NFT Memes!" src="./images/temp.png">        
       </div>
-    <div class="text_center">
+    <div class="text_center mint_container">
       <button id="mint_button" class="black_button">MINT</button>
     </div>
    </div> 
 
   </section>
 
-  <section class="popular_section">
-    <h1>POPULAR MEMES</h1>
-    <img src="./images/popular.webp" style="width:100%;margin-bottom: -5px;">
-  </section>
-
-  <section class="faq_section">
+  <section class="faq_section" id="faq">
     <h2>Frequently Asked Questions</h2>
     <div class="faq_container">
       <div>
@@ -186,9 +187,10 @@
     </div>
   </section>
 
-  <section class="about_section">
-    <img class="and_sign" src="./images/and.svg">
+  <section class="about_section" id="about">
+    <img class="and_sign hide_on_mobile" src="./images/and.svg">
     <div>
+      <img class="and_sign show_on_mobile" src="./images/and.svg">
       <h1>GET TO KNOW US</h1>
       <p>Hey! My name is Thomas and I’ve created this platform to help bring memes to the NFT world!<br>This is the main goal, however I have bigger plans for NFT Memes, my personal goal is to create a community of fun, inventive people to generate NFT Memes and help them earn royalties from the resale of their creation!</p>
 
@@ -210,9 +212,6 @@
   
   <footer>All rights reserved. NFT-Memes</footer>
 
-  <button id="up_to_top" style="display: none;">TOP</button>
-
-  
   <div id="search_modal" class="modal">
     <div class="modal-content">
       <div class="templates_search_container">
@@ -232,7 +231,7 @@
       </div>
       
       <div class="grid_hidden">
-        <img src="#">
+        <img src="#" style="display: none;">
       </div>
     </div>
   </div>

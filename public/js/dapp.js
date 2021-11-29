@@ -35,10 +35,6 @@ var waitForWeb3 = setInterval(function () {
 			contract = new web3.eth.Contract(abi, contract_address);
       (async function(){
         // var totalSupply = await contract.methods.totalSupply().call();
-        // document.getElementById("headline_launch").innerHTML = "SALE IS OPEN!"
-        // document.getElementById("time").innerHTML = totalSupply + " / 10000";
-        // var progress_width = totalSupply / 100; 
-        // document.getElementById("progress_bar_child").style.width = progress_width+"%";
 
         const provider = await detectEthereumProvider();
         if (provider) {
@@ -75,7 +71,7 @@ var waitForMetamask = setInterval(function () {
 
 async function mint() {   
 	var account = await getAccount(); 
-	var number_for_mint = document.getElementById("number_for_mint").value;
+	var number_for_mint = 1;
 	var pret_final_in_gwei = 10000000 * number_for_mint;
 	var pret_final = web3.utils.toHex(web3.utils.toWei(pret_final_in_gwei.toString(), 'gwei'));
 
@@ -100,9 +96,11 @@ async function mint() {
       method: 'eth_sendTransaction',
       params: [tx],
   }).then((result) => {
-    console.log('Minting successful!');
+    console.log('Minting successful! ' + result);
+    //send result to nodejs and track it, upon success upload to final json/img folder
   })
   .catch((error) => {
+    console.log(web3.eth.blockNumber+'   '+web3.eth.getTransaction('0x956b7112f9b7cc27f3bb56a0917f7d5c708ebd6bee9012db3ffa906fcffcfb09').blockNumber);
     console.log(error+' 68');
   });
 }

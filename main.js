@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 const path = require('path');
 const fabric = require("fabric").fabric;
@@ -30,11 +32,16 @@ if(port == 8080){
     const connectLivereload = require("connect-livereload");
     app.use(connectLivereload());
 }
+
+//proxy_set_header Strict-Transport-Security: max-age=31536000; de adaugat 
 // only for dev end    
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb',extended: true}));
+app.use(express.static(path.join(__dirname, "public"), {
+    maxAge: '5000' // uses milliseconds per docs
+  }))
 
 
 app.listen(port, () => {
@@ -47,7 +54,7 @@ app.post(`/generate_meme`, function(req, res) {
     res.sendStatus(200);
 });
 app.get("/", (req, res) => {
-    end_of_arrayslice = getRandomInt(40,images_array.length);
+    let end_of_arrayslice = getRandomInt(40,images_array.length);
     small_similar_image = images_array.slice(end_of_arrayslice-40,end_of_arrayslice);
     res.render("index", ({
         small_similar_image

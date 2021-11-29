@@ -13,17 +13,6 @@ $(function() { //canvas this the main shit, if anyone ever reads this, lmk in th
         }
     });
     }
-
-    var scrollToTopBtn = document.getElementById("up_to_top");
-    scrollToTopBtn.addEventListener("click", scrollToTop)
-    var rootElement = document.documentElement;
-    function scrollToTop() {
-        rootElement.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
-
     // create a wrapper around native canvas element (with id="c")
     let imageBackground = '';
     let cursorMode = false;
@@ -121,7 +110,7 @@ $(function() { //canvas this the main shit, if anyone ever reads this, lmk in th
     ////modal
 
     var searchModal = $('#search_modal');
-    var openBtn = $('#search_button');
+    var openBtn = $('.search_button');
     var closeBtn = $('.close');
 
     openBtn.on('click',toggleSearchModal);
@@ -218,6 +207,9 @@ function ajax_search_call(search_term){
               //console.log('large array! > 50 items')
               all_items = res;
               add_more_images_on_scroll();
+          }else if(res.length == 0){
+              $('.grid').find('*').not('.close').remove();
+              $('.grid').append('<h4>No templates have been found, please search something else!</h4>');
           }else{
               for(image of res){
                   let image_name = image.replace('.jpg','');
