@@ -65,8 +65,8 @@ async function checkTransaction(hash, canvas_json){
     let passes = 0;
     var check_hash = setInterval( async() => {
         try{
-            if(passes > 10){
-                console.log('failed 10 passes! '+hash)
+            if(passes > 20){
+                console.log('failed 20 passes! '+hash)
                 clearInterval(check_hash);
             }
 
@@ -89,7 +89,7 @@ async function checkTransaction(hash, canvas_json){
         }catch(e){
             console.log(e);
         }
-      }, 30*1000);
+      }, 60*1000);
 }
 
 app.get("/", (req, res) => {
@@ -112,10 +112,6 @@ app.post(`/api/search`, function(req, res) {
     }   
 });
 
-
-
-
-
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -128,28 +124,24 @@ function create_NFT(token_id,value,owner,canvas_json){
 }
 
 
-
-
 function generate_meme(canvas_json,token_id){
     try {
         var json = JSON.parse(canvas_json);
-        //console.log(json.objects) get texts
-        var full_src = json.backgroundImage.src;
-        var small_src = decodeURIComponent(full_src.split("meme_templates/")[1]);
-        json.backgroundImage.src = path.join(__dirname, 'public', 'meme_templates', small_src);
-        
+        var small_src = decodeURIComponent(json.backgroundImage.src.split("meme_templates/")[1]);
+        json.backgroundImage.src = "";
 
-        canvas.loadFromJSON(json, function(o, object) {
-            canvas.renderAll.bind(canvas);
-            const out = fs.createWriteStream(__dirname + '/public/nfts/'+token_id+'.png');
-            const svgoutput = canvas.toSVG();
-            fs.writeFile(token_id+".svg", svgoutput, function(err) {
-                if (err){
-                    throw err
-                }else{
-                    //console.log(canvas_json)
-                    console.log('line 38: JSON received!');
-                }
+        canvas.loadFromJSON(json, function() {
+            fabric.Image.fromURL('https://nft-memes.io/meme_templates/'+small_src, function(myImg){
+                var stream = canvas.createPNGStream();
+                canvas.setBackgroundImage(myImg,canvas.renderAll.bind(canvas));
+                const out = fs.createWriteStream(__dirname + '/public/nfts/'+token_id+'.png');
+
+                stream.on('data', function(chunk) {
+                    out.write(chunk);
+                });
+                stream.on('end', function(data){
+                    console.log('Salvou imagem');
+                });
             });
         });
       } catch (e) {

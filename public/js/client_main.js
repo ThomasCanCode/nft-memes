@@ -367,18 +367,20 @@ async function mint() {
       method: 'eth_sendTransaction',
       params: [tx],
   }).then( async (result) => {
-    console.log('Minting successful! ' + result);
-    //send result to nodejs and track it, upon success upload to final json/img folder
-    const params = {
-      from: account,
-      to: contract_address,
-      txHash: result,
-      chainId: deployed_chain,
-      value: pret_final,
-      status: 'pending'
-    };
+        console.log('Minting successful! ' + result);
+        //send result to nodejs and track it, upon success upload to final json/img folder
+        const params = {
+        from: account,
+        to: contract_address,
+        txHash: result,
+        chainId: deployed_chain,
+        value: pret_final,
+        status: 'pending'
+        };
 
-      // Post tx data
+        // Post tx data
+        
+        var tojson = JSON.stringify(canvas);
 
           $.ajax({
           type: 'POST',
